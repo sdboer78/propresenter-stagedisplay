@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Stagedisplay</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      
+      body {    
+        background: #000;
+      }
+      #all { 
+        cursor: none; 
+        width: 100%;
+        height: 100%;
+        position: fixed; 
+      }
+
+      #clock {
+        margin-left: 20px;
+        margin-right: 20px;
+        color: #fff;
+        font-family: Helvetica,sans-serif;
+        font-size: 60px;
+        letter-spacing: 1px;
+        text-align: left;
+        position: fixed;
+        top: 10px;
+        cursor: none;
+      }
+      #current {
+        margin-left: 20px;
+        margin-right: 20px;
+        color: #fff;
+        font-family: Helvetica,sans-serif;
+        font-size: 140px;
+        letter-spacing: 1px;
+        text-align: left;
+        position: fixed; 
+        top: 100px;
+        cursor: none;
+      }
+      #next {
+        margin-left: 20px;
+        margin-right: 20px;
+        color: #fff;
+        font-family: Helvetica,sans-serif;
+        font-size: 90px;
+        letter-spacing: 1px;
+        text-align: left;
+        position: fixed;
+        bottom: 10px;
+        cursor: none;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div id="all"></div>
+    <div id="clock"></div>
+    <div id="current"></div>
+    <div id="next"></div>
+
+    <script src="config.js"></script>
+    <script src="propresenter.js"></script>
+
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+
+        startTime();
+    </script>
+  </body>
+</html>

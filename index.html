@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <h2>ProPresenter config:</h2>
+    <ul>
+      <script>
+        document.write("<li>Propresenter ip: " + config['propresenter_ip'] + "</li>");
+        document.write("<li>Propresenter port: " + config['propresenter_port'] + "</li>");
+        document.write("<li>Propresenter password: " + config['propresenter_password'] + "</li>");
+        document.write("<li>Filter lines starts with: "  + config['filter_lines_starts_with'] + "</li>");
+      </script>
+    </ul>
+
+    <h2>Choose mode:</h2>
+    <ul> 
+      <li><a href="subtitle.html">Subtitle mode</a></li>
+      <li><a href="stagedisplay.html">Stagedisplay mode</a></li>
+    </ul>
+
+    <h2>Simple demo:</h2>
+    <h3>Current</h3>
+    <div id="current">waiting for data ....</div>
+    <h3>Next</h3>
+    <div id="next">waiting for data ....</div>
+    <script src="propresenter.js"></script>
+
+    
+  </body>
+</html>
