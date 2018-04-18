@@ -6,7 +6,7 @@ var nextDiv = document.getElementById("next");
 function setCurrent(slide) {
     if (currentDiv) {
        slideNew = "";
-       slideSplitted = slide.split("\n");
+       slideSplitted = slide.split(config['filter_lines_starts_with']);
 
        slideSplitted.forEach(function(element) {
            if (!element.startsWith(config['filter_lines_starts_with'])) {
@@ -22,7 +22,7 @@ function setCurrent(slide) {
 function setNext(slide) {
     if (nextDiv) {
        slideNew = "";
-       slideSplitted = slide.split("\n");
+       slideSplitted = slide.split(config['filter_lines_starts_with']);
 
        slideSplitted.forEach(function(element) {
            if (!element.startsWith(config['filter_lines_starts_with'])) {
@@ -70,6 +70,8 @@ function connect() {
 
     ws.onclose = function(e) {
         console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+        setCurrent("Waiting for data ...");
+        setNext("Waiting for data ...");
         setTimeout(function() {
             connect();
         }, 1000);
@@ -77,6 +79,8 @@ function connect() {
 
     ws.onerror = function(err) {
         console.error('Socket encountered error: ', err.message, 'Closing socket');
+        setCurrent("Waiting for data ...");
+        setNext("Waiting for data ...");
         ws.close();
     };
 }
