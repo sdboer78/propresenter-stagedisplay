@@ -6,7 +6,11 @@ var nextDiv = document.getElementById("next");
 function setCurrent(slide) {
     if (currentDiv) {
        slideNew = "";
-       slideSplitted = slide.split(config['filter_lines_starts_with']);
+
+       slide = replaceNewLines(slide);
+
+       //split
+       slideSplitted = slide.split("\n");
 
        slideSplitted.forEach(function(element) {
            if (!element.startsWith(config['filter_lines_starts_with'])) {
@@ -22,7 +26,11 @@ function setCurrent(slide) {
 function setNext(slide) {
     if (nextDiv) {
        slideNew = "";
-       slideSplitted = slide.split(config['filter_lines_starts_with']);
+
+       slide = replaceNewLines(slide);
+
+       //split
+       slideSplitted = slide.split("\n");
 
        slideSplitted.forEach(function(element) {
            if (!element.startsWith(config['filter_lines_starts_with'])) {
@@ -33,6 +41,12 @@ function setNext(slide) {
        slideHtml = slideNew.trim().replace(/\n/g, "<br />");
        nextDiv.innerHTML = slideHtml;
     }
+}
+
+function replaceNewLines(txt) {
+    //replace all different new line types
+    txt = txt.replace(/(?:\r\n|\r|\n|\u2028)/g, '\n');
+    return txt;
 }
 
 function processMessage(message) {
