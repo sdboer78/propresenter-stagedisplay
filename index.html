@@ -1,52 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <script src="config.js"></script>
-  </head>
-  <body>
-    <h2>ProPresenter config:</h2>
-    <ul>
-      <script>
-        document.write("<li>Propresenter ip: " + config['propresenter_ip'] + "</li>");
-        document.write("<li>Propresenter port: " + config['propresenter_port'] + "</li>");
-        document.write("<li>Propresenter password: " + config['propresenter_password'] + "</li>");
-        document.write("<li>Filter lines starts with: "  + config['filter_lines_starts_with'] + "</li>");
-        document.write("<li>Filter lines split character: "  + config['filter_lines_split_character'] + "</li>");
-      </script>
-    </ul>
+	<head>
+		<script src="config.js"></script>
+	</head>
+	<body>
+		<h2>ProPresenter config:</h2>
+		<ul>
+			<script>
+				document.write("<li>Propresenter ip: " + config["propresenter_ip"] + "</li>");
+				document.write("<li>Propresenter port: " + config["propresenter_port"] + "</li>");
+				document.write("<li>Propresenter password: " + config["propresenter_password"] + "</li>");
+				document.write("<li>Filter lines starts with: " + config["filter_lines_starts_with"] + "</li>");
+				document.write("<li>Filter lines split character: " + config["filter_lines_split_character"] + "</li>");
+				document.write("<li>Fade duration: " + config["fade_duration"] + "</li>");
+			</script>
+		</ul>
 
-    <h2>Choose mode:</h2>
-    <ul> 
-      <li><a href="subtitle.html">Subtitle mode</a></li>
-      <li><a href="stagedisplay.html">Stagedisplay mode</a></li>
-    </ul>
+		<h2>Choose mode:</h2>
+		<ul>
+			<li><a href="subtitle.html">Subtitle mode</a></li>
+			<li><a href="stagedisplay.html">Stagedisplay mode</a></li>
+		</ul>
 
-    <h2>Simple demo:</h2>
-    <h3>Current</h3>
-    <div id="current"></div>
-    <h3>Next</h3>
-    <div id="next"></div>
-    <script src="propresenter.js"></script>
+		<h2>Simple demo:</h2>
+		<h3>Current</h3>
+		<div id="current-a"></div>
+		<div id="current-b"></div>
+		<h3>Next</h3>
+		<div id="next"></div>
+		<script>
+			var useFade = False;
+		</script>
+		<script src="propresenter.js"></script>
 
-    <h2>Console log</h2>
-    <textarea id="log" cols="100" rows="15"></textarea>
-    <script>
-    (function () {
-        var count = 0;
-        var old = console.log;
-        var logger = document.getElementById('log');
-        console.log = function () {
-          count++;
-          for (var i = 0; i < arguments.length; i++) {
-            if (typeof arguments[i] == 'object') {
-                logger.innerHTML += count + ": " + (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '\n';
-            } else {
-                if (arguments[i]) logger.innerHTML += count + ": " + arguments[i] + '\n';
-            }
-            log.scrollTop = log.scrollHeight;
-          }
-        }
-    })();
-    </script>
-  </body>
+		<h2>Console log</h2>
+		<textarea id="log" cols="100" rows="15"></textarea>
+		<script>
+			(function() {
+				var count = 0;
+				var old = console.log;
+				var logger = document.getElementById("log");
+				console.log = function() {
+					count++;
+					for (var i = 0; i < arguments.length; i++) {
+						if (typeof arguments[i] == "object") {
+							logger.innerHTML += count + ": " + (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + "\n";
+						} else {
+							if (arguments[i]) logger.innerHTML += count + ": " + arguments[i] + "\n";
+						}
+						log.scrollTop = log.scrollHeight;
+					}
+				};
+			})();
+		</script>
+	</body>
 </html>
